@@ -1,50 +1,58 @@
-package Domain;
+package main.java.Domain;
 
 public class User {
+    private String Password;
+    private String Email;
+    private String Username ="";
+    private String token="";
+    public User(String email, String password, String username, String token) {
+        this.Password = password;
+        this.Email = email;
+        this.Username = username;
+        this.token = token;
+    }
+    public User(String email, String password,String username){
 
-    private String usermame;
-    private String password;
-    private String email;
-    private int id;
-
-    public User(String username,String password,String email,int id){
-
-        this.usermame=username;
-        this.password=password;
-        this.email=email;
-        this.id=id;
+        this.Password = password;
+        this.Email = email;
+        this.Username =username;
     }
 
+    public User(String email, String password){
 
-    public String getUsermame() {
-        return usermame;
-    }
-
-    public void setUsermame(String usermame) {
-        this.usermame = usermame;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        this.Password = password;
+        this.Email = email;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
-    public int getId() {
-        return id;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.Password = password;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

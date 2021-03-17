@@ -1,20 +1,37 @@
-package Domain;
+package main.java.Domain;
 
 public class Account {
 
 
-    private int id;
-    private String name;
-    private int userId;
-    private int sold;
-    private boolean debt;
+    private int id=0;
+    private String Name="";
+    private int Sold=0;
+    private int Debt=1;
+    private String created_at="";
+    private String updated_at="";
+    private int UserId=0;
 
-    public Account(int id, String name, int userId, int sold, boolean debt) {
+    public Account(int id, String name, int UserId, int sold, int debt, String created_at, String updated_at) {
         this.id = id;
-        this.name = name;
-        this.userId = userId;
-        this.sold = sold;
-        this.debt = debt;
+        this.UserId=UserId;
+        this.Name = name;
+        this.Sold = sold;
+        this.Debt = debt;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
+    public Account(int id, String name, int sold, int debt, String created_at, String updated_at) {
+        this.id = id;
+        this.Name = name;
+        this.Sold = sold;
+        this.Debt = debt;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+    public Account(String name, int sold){
+        this.Name=name;
+        this.Sold=sold;
     }
 
 
@@ -27,34 +44,51 @@ public class Account {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = name;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public int getSold() {
-        return sold;
+        return Sold;
     }
 
     public void setSold(int sold) {
-        this.sold = sold;
+        this.Sold = sold;
     }
 
-    public boolean isDebt() {
-        return debt;
+    public int isDebt() {
+        return Debt;
     }
 
-    public void setDebt(boolean debt) {
-        this.debt = debt;
+    public void setDebt(int debt) {
+        this.Debt = debt;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public int getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int userId) {
+        UserId = userId;
     }
 }

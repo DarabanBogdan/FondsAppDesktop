@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.GUI.SignInGUI">
+   <children>
+      <TextField fx:id="emailTextField" layoutX="203.0" layoutY="74.0" />
+      <TextField fx:id="usernameTextField" layoutX="203.0" layoutY="119.0" />
+      <Label layoutX="159.0" layoutY="78.0" text="Email" />
+      <Label layoutX="136.0" layoutY="123.0" text="Username" />
+      <PasswordField fx:id="passwordTextField" layoutX="203.0" layoutY="161.0" />
+      <PasswordField fx:id="retryPasswordTextField" layoutX="203.0" layoutY="200.0" />
+      <Label layoutX="138.0" layoutY="165.0" text="Password" />
+      <Label layoutX="108.0" layoutY="204.0" text="Retry Password" />
+      <Button fx:id="signUpButton" layoutX="203.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#SignUp" text="Sign up" />
+      <Button fx:id="logInButton" layoutX="300.0" layoutY="263.0" mnemonicParsing="false" onMouseClicked="#LogInShow" text="Log In" />
+   </children>
+</AnchorPane>
