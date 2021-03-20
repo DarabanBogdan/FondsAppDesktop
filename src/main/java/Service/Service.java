@@ -1,10 +1,10 @@
 package main.java.Service;
 
 import main.java.Domain.Account;
+import main.java.Domain.Transaction;
 import main.java.Domain.User;
 import main.java.Retrofit.ApiInterface;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.io.IOException;
@@ -25,26 +25,12 @@ public class Service {
         this.user=user;
         this.apiInterface=apiInterface;
     }
-    public int AddAccount(Account account){
+    public int AddAccount(Account account) throws IOException {
 
-
-        code=400;
         Call<Void> call=apiInterface.AddAccount(account, user.getToken());
+       Response response = call.execute();
 
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                 code=response.code();
-
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                code=400;
-            }
-        });
-
-        return code;
+        return response.code();
 
     }
 
@@ -55,11 +41,58 @@ public class Service {
 
         code=400;
         Call<List<Account>> call=apiInterface.GetAllAccount(user.getToken());
-        System.out.println(user.getToken());
 
 
-        temp=call.execute().body();
-
+        Response<List<Account>> response = call.execute();
+        temp=response.body();
+        code=response.code();
         return temp;
+    }
+
+    public int DeleteAccount(int idAccount) throws IOException {
+        Call<Void> call=apiInterface.DeleteAccount(idAccount, user.getToken());
+        Response response = call.execute();
+
+        return response.code();
+    }
+
+    public int UpdateAccount(Account account) throws IOException {
+
+        Call<Void> call=apiInterface.UpdateAccount(account.getId(),account, user.getToken());
+        Response response = call.execute();
+
+        return response.code();
+    }
+
+    public Iterable<Transaction> findAllTransaction(int id) throws IOException {
+
+        Iterable<Transaction> tempTrasaction=new ArrayList<>();
+
+        code=400;
+        Call<List<Transaction>> call=apiInterface.GetAllTransaction(id,user.getToken());
+
+
+        Response<List<Transaction>> response = call.execute();
+        tempTrasaction=response.body();
+        code=response.code();
+        return tempTrasaction;
+    }
+
+    public int AddTransaction(Transaction transaction) throws IOException {
+
+        Call<Void> call=apiInterface.AddTransaction(transaction, user.getToken());
+        Response response = call.execute();
+
+        return response.code();
+
+
+    }
+
+    public int UpdateTransaction(Transaction transaction) throws IOException {
+
+        Call<Void> call=apiInterface.UpdateTransaction(transaction.getId(),transaction, user.getToken());
+        Response response = call.execute();
+
+        return response.code();
     }
 }

@@ -2,21 +2,27 @@ package main.java.Domain;
 
 public class Transaction {
     private int id;
-    private String title;
-    private String details;
-    private int accountId;
-    private int sold;
+    private String  Title;
+    private String Details;
+    private int AccountId;
+    private int Sold;
     private String created_at;
     private String updated_at;
 
     public Transaction(int id, String title, String details, int accountId, int sold, String created_at, String updated_at) {
         this.id = id;
-        this.title = title;
-        this.details = details;
-        this.accountId = accountId;
-        this.sold = sold;
+        this.Title = title;
+        this.Details = details;
+        this.AccountId = accountId;
+        this.Sold = sold;
         this.created_at = created_at;
         this.updated_at = updated_at;
+    }
+
+    public Transaction(String title, String details, int  sold) {
+        this.Sold=sold;
+        this.Title=title;
+        this.Details=details;
     }
 
     public int getId() {
@@ -28,35 +34,35 @@ public class Transaction {
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.Title = title;
     }
 
     public String getDetails() {
-        return details;
+        return Details;
     }
 
     public void setDetails(String details) {
-        this.details = details;
+        this.Details = details;
     }
 
     public int getAccountId() {
-        return accountId;
+        return AccountId;
     }
 
     public void setAccountId(int accountId) {
-        this.accountId = accountId;
+        this.AccountId = accountId;
     }
 
     public int getSold() {
-        return sold;
+        return Sold;
     }
 
     public void setSold(int sold) {
-        this.sold = sold;
+        this.Sold = sold;
     }
 
     public String getCreated_at() {

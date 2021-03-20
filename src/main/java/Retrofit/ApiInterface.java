@@ -1,6 +1,7 @@
 package main.java.Retrofit;
 
 import main.java.Domain.Account;
+import main.java.Domain.Transaction;
 import main.java.Domain.User;
 import retrofit2.Call;
 import retrofit2.http.*;
@@ -25,4 +26,27 @@ public interface ApiInterface {
     @Headers({"Accept: application/json", "Content-Type: application/json"})
     @POST("User/AllAccounts")
     Call<List<Account>>GetAllAccount(@Header("Authorization") String authHeader);
+
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @DELETE("Account/{id}")
+    Call<Void> DeleteAccount(@Path("id") int id,@Header("Authorization") String authHeader);
+
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @PUT("Account/{id}")
+    Call<Void> UpdateAccount(@Path("id") int id, @Body Account account,@Header("Authorization") String authHeader);
+
+
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @GET("Account/AllTransaction/{id}")
+    Call<List<Transaction>>GetAllTransaction(@Path("id")int id, @Header("Authorization") String authHeader);
+
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @POST("Transaction")
+    Call<Void>AddTransaction(@Body Transaction transaction, @Header("Authorization") String authHeader);
+
+
+    @Headers({"Accept: application/json", "Content-Type: application/json"})
+    @PUT("Transaction/{id}")
+    Call<Void> UpdateTransaction(@Path("id") int id, @Body Transaction transaction,@Header("Authorization") String authHeader);
+
 }
