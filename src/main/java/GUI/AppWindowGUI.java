@@ -226,8 +226,13 @@ public class AppWindowGUI {
 
         Transaction transaction =new Transaction(transactionTitleTextField.getText(),transactionDetailsTextField.getText(),Float.parseFloat(transactionSoldTextField.getText()));
         transaction.setAccountId(accountTable.getSelectionModel().getSelectedItem().getId());
+        Account account =accountTable.getSelectionModel().getSelectedItem();
+
         int code=service.AddTransaction(transaction);
         if(code==201){
+            account.setSold(account.getSold()+transaction.getSold());
+            service.UpdateAccount(account);
+            ShowAccountTable();
             ShowTransactionTable();
             transactionTitleTextField.clear();
             transactionDetailsTextField.clear();
