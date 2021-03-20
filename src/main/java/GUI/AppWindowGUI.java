@@ -69,13 +69,16 @@ public class AppWindowGUI {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
                     try {
+                        ClearTextFields();
                         ShowTransactionTable();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
 
                     if(mouseEvent.getClickCount() == 2){
                         try {
+                            ClearTextFields();
                             CompleteAccount();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -91,6 +94,7 @@ public class AppWindowGUI {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
 
+                    ClearTextFields();
                     transactionUpdateButton.setDisable(true);
                     transactionSoldTextField.setEditable(true);
 
@@ -152,7 +156,7 @@ public class AppWindowGUI {
 
         this.transactionIdColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getId())));
         this.transactionTitleColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
-        this.transactionSoldColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getSold())));
+        this.transactionSoldColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Float.toString(cellData.getValue().getSold())));
         this.transactionDetailsColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDetails()));
         this.transactionDateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUpdated_at()));
 
@@ -165,10 +169,11 @@ public class AppWindowGUI {
     public void AddAccount() throws IOException {
 
 
-        Account account=new Account(accountNameTextField.getText(),Integer.parseInt(accountSoldTextField.getText()));
+        Account account=new Account(accountNameTextField.getText(),Float.parseFloat(accountSoldTextField.getText()));
 
         int code=service.AddAccount(account);
         if(code==201){
+            transactionTable.getItems().clear();
             ShowAccountTable();
             accountNameTextField.clear();
             accountSoldTextField.clear();
@@ -183,6 +188,7 @@ public class AppWindowGUI {
        int id= accountTable.getSelectionModel().getSelectedItem().getId();
        int code=service.DeleteAccount(id);
         if(code==200){
+            transactionTable.getItems().clear();
             ShowAccountTable();
             accountNameTextField.clear();
             accountSoldTextField.clear();
@@ -200,6 +206,7 @@ public class AppWindowGUI {
         account.setId(accountTable.getSelectionModel().getSelectedItem().getId());
         int code=service.UpdateAccount(account);
         if(code==200){
+            transactionTable.getItems().clear();
             ShowAccountTable();
             transactionTable.getItems().clear();
             accountNameTextField.clear();
@@ -217,7 +224,7 @@ public class AppWindowGUI {
 
     public void AddTransaction() throws IOException {
 
-        Transaction transaction =new Transaction(transactionTitleTextField.getText(),transactionDetailsTextField.getText(),Integer.parseInt(transactionSoldTextField.getText()));
+        Transaction transaction =new Transaction(transactionTitleTextField.getText(),transactionDetailsTextField.getText(),Float.parseFloat(transactionSoldTextField.getText()));
         transaction.setAccountId(accountTable.getSelectionModel().getSelectedItem().getId());
         int code=service.AddTransaction(transaction);
         if(code==201){
@@ -275,7 +282,7 @@ public class AppWindowGUI {
 
         this.accountIdColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getId())));
         this.accountNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        this.accountSoldColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(cellData.getValue().getSold())));
+        this.accountSoldColumn.setCellValueFactory(cellData -> new SimpleStringProperty(Float.toString(cellData.getValue().getSold())));
 
         accountTable.setItems(accountList);
 
@@ -308,5 +315,13 @@ public class AppWindowGUI {
 
         alert.showAndWait();
 
+    }
+    public  void ClearTextFields(){
+
+        transactionTitleTextField.clear();
+        transactionDetailsTextField.clear();
+        transactionSoldTextField.clear();
+        accountNameTextField.clear();
+        accountSoldTextField.clear();
     }
 }

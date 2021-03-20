@@ -5,13 +5,13 @@ public class Account {
 
     private int id=0;
     private String Name="";
-    private int Sold=0;
+    private float Sold=0;
     private int Debt=1;
     private String created_at="";
     private String updated_at="";
     private int UserId=0;
 
-    public Account(int id, String name, int UserId, int sold, int debt, String created_at, String updated_at) {
+    public Account(int id, String name, int UserId, float sold, int debt, String created_at, String updated_at) {
         this.id = id;
         this.UserId=UserId;
         this.Name = name;
@@ -21,7 +21,7 @@ public class Account {
         this.updated_at = updated_at;
     }
 
-    public Account(int id, String name, int sold, int debt, String created_at, String updated_at) {
+    public Account(int id, String name, float sold, int debt, String created_at, String updated_at) {
         this.id = id;
         this.Name = name;
         this.Sold = sold;
@@ -29,7 +29,7 @@ public class Account {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
-    public Account(String name, int sold){
+    public Account(String name, float sold){
         this.Name=name;
         this.Sold=sold;
     }
@@ -52,11 +52,11 @@ public class Account {
     }
 
 
-    public int getSold() {
+    public float getSold() {
         return Sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(float sold) {
         this.Sold = sold;
     }
 

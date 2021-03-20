@@ -5,11 +5,11 @@ public class Transaction {
     private String  Title;
     private String Details;
     private int AccountId;
-    private int Sold;
+    private float Sold;
     private String created_at;
     private String updated_at;
 
-    public Transaction(int id, String title, String details, int accountId, int sold, String created_at, String updated_at) {
+    public Transaction(int id, String title, String details, int accountId, float sold, String created_at, String updated_at) {
         this.id = id;
         this.Title = title;
         this.Details = details;
@@ -19,7 +19,7 @@ public class Transaction {
         this.updated_at = updated_at;
     }
 
-    public Transaction(String title, String details, int  sold) {
+    public Transaction(String title, String details, float  sold) {
         this.Sold=sold;
         this.Title=title;
         this.Details=details;
@@ -57,11 +57,11 @@ public class Transaction {
         this.AccountId = accountId;
     }
 
-    public int getSold() {
+    public float getSold() {
         return Sold;
     }
 
-    public void setSold(int sold) {
+    public void setSold(float sold) {
         this.Sold = sold;
     }
 
